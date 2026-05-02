@@ -1,0 +1,6 @@
+- [x] Create project structure and `requirements.txt`
+- [x] Set up virtual environment and install dependencies
+- [x] Implement `ingest.py`
+- [x] Implement `search.py`
+- [x] Create `iteration01.md` summary
+- [x] Verify functionality with sample data

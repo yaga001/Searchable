@@ -1,0 +1,28 @@
+# Ignore Virtual Environments
+venv/
+hf_cache/
+chroma_db/
+pip_cache/
+tmp/
+env/
+.env/
+bin/
+lib/
+Include/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Ignore Large Models or Data (adjust names if yours are different)
+models/
+data/
+weights/
+*.pth
+*.bin
+*.h5
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
