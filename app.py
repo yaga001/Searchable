@@ -11,6 +11,7 @@ os.environ["SENTENCE_TRANSFORMERS_HOME"] = HF_CACHE
 os.environ["TRANSFORMERS_CACHE"] = HF_CACHE
 
 from sentence_transformers import SentenceTransformer
+import numpy as np
 
 # Configuration
 DB_PATH = "chroma_db"
@@ -29,10 +30,10 @@ def get_model(model_name):
 
 def get_collection(client, model_name):
     # Dynamic collection name based on model to avoid dimension mismatch
-    collection_name = f"image_search_{model_name.replace('-', '_').replace('.', '_')}_v2"
+    collection_name = f"image_search_{model_name.replace('-', '_').replace('.', '_')}_v3"
     return client.get_or_create_collection(
         name=collection_name,
-        metadata={"hnsw:space": "cosine"}
+        metadata={"hnsw:space": "ip"}
     )
 
 def main():
@@ -85,7 +86,9 @@ def main():
                     image.save(filepath)
                     
                     # Generate embedding
-                    embedding = model.encode(image).tolist()
+                    raw_emb = model.encode(image)
+                    norm = np.linalg.norm(raw_emb)
+                    embedding = (raw_emb / norm).tolist()
                     
                     collection.add(
                         ids=[filename],
@@ -113,7 +116,9 @@ def main():
     if query:
         with st.spinner("Searching..."):
             try:
-                query_embedding = model.encode(query).tolist()
+                raw_query_emb = model.encode(query)
+                norm = np.linalg.norm(raw_query_emb)
+                query_embedding = (raw_query_emb / norm).tolist()
                 results = collection.query(
                     query_embeddings=[query_embedding],
                     n_results=n_results

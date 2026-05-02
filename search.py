@@ -11,13 +11,14 @@ import sys
 import argparse
 from sentence_transformers import SentenceTransformer
 import chromadb
+import numpy as np
 
 # Configuration
 DB_PATH = "chroma_db"
 
 def search(query_text, model_name, n_results=3):
     # Dynamic collection name based on model to avoid dimension mismatch
-    collection_name = f"image_search_{model_name.replace('-', '_').replace('.', '_')}_v2"
+    collection_name = f"image_search_{model_name.replace('-', '_').replace('.', '_')}_v3"
 
     # 1. Initialize ChromaDB
     client = chromadb.PersistentClient(path=DB_PATH)
@@ -28,7 +29,9 @@ def search(query_text, model_name, n_results=3):
     
     # 3. Embed the text query
     print(f"Searching for: '{query_text}'...")
-    query_embedding = model.encode(query_text).tolist()
+    raw_embedding = model.encode(query_text)
+    norm = np.linalg.norm(raw_embedding)
+    query_embedding = (raw_embedding / norm).tolist()
     
     # 4. Query ChromaDB
     results = collection.query(

@@ -279,3 +279,5 @@ yarl==1.22.0
 yt-dlp==2025.3.31
 zope.interface==8.0.1
 zstandard==0.25.0
+optimum==1.23.3
+onnxruntime==1.20.1
