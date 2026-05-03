@@ -132,7 +132,17 @@ with st.sidebar:
         if not online_mode:
             st.info("Please switch to **Online Mode** to download this model (one-time download).")
         else:
-            st.info("System will download the model on first initialization.")
+            if st.button(f"📥 Download {info['name']}", type="primary", use_container_width=True):
+                try:
+                    with st.spinner("Downloading model components... This may take a few minutes."):
+                        load_model.clear() # Force reload
+                        load_model(selected_model_id)
+                        st.success("Download complete! Model is now cached.")
+                        st.rerun()
+                except Exception as e:
+                    st.error(f"Download failed: {e}")
+            else:
+                st.info("Click the button above to begin the one-time download.")
 
 # Late import to ensure environment variables are set
 from sentence_transformers import SentenceTransformer

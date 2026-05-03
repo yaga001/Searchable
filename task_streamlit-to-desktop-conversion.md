@@ -8,6 +8,6 @@
 - [x] Verify functionality
 - [/] Convert to Lightweight Desktop App
     - [x] Create `requirements-desktop.txt` (CPU-only)
-    - [x] Update `app.py` with model presence detection
-    - [/] Install `streamlit-desktop-app`
-    - [ ] Build desktop executable with exclusions
+    - [x] Update `app.py` with model presence detection and download button
+    - [x] Install `streamlit-desktop-app`
+    - [/] Rebuild desktop executable with `chromadb` fixes
