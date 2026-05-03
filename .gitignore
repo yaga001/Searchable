@@ -26,3 +26,16 @@ weights/
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+# Desktop App build folders
+dist/
+build/
+*.spec
+
+# Streamlit-specific desktop libraries/folders
+streamlit-desktop-app/
+packages/
+pyinstaller/
+
+# Any local data or logs the desktop app creates
+logs/
+*.log
