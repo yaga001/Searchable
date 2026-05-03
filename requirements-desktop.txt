@@ -1,0 +1,14 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.11.0+cpu
+torchvision==0.26.0+cpu
+streamlit==1.57.0
+sentence-transformers==3.4.1
+chromadb==0.6.3
+pillow==11.1.0
+numpy==2.2.3
+# Additional essentials
+tqdm==4.67.3
+transformers==5.7.0
+huggingface-hub==0.36.0
+stlite-desktop==0.1.0
+streamlit-desktop-app==0.1.0

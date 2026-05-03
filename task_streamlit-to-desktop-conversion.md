@@ -1,0 +1,13 @@
+- [x] Fix dependencies (torchvision) in venv
+- [x] Implement enhanced UI in `app.py`
+    - [x] Add sidebar connectivity toggle
+    - [x] Define model metadata and powerpoints
+    - [x] Update `get_model` to handle offline/online modes
+    - [x] Add premium CSS and model cards
+- [x] Update `ingest.py` with offline support
+- [x] Verify functionality
+- [/] Convert to Lightweight Desktop App
+    - [x] Create `requirements-desktop.txt` (CPU-only)
+    - [x] Update `app.py` with model presence detection
+    - [/] Install `streamlit-desktop-app`
+    - [ ] Build desktop executable with exclusions

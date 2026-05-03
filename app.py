@@ -110,6 +110,11 @@ with st.sidebar:
     
     # Model Metadata Display (Model Card)
     info = MODEL_INFO[selected_model_id]
+    
+    # Check if model is cached
+    model_folder = f"models--sentence-transformers--{selected_model_id}"
+    is_cached = os.path.exists(os.path.join(HF_CACHE, model_folder))
+    
     st.markdown(f"""
         <div class="model-card">
             <h4>{info['name']}</h4>
@@ -121,6 +126,13 @@ with st.sidebar:
             <small>📐 Dims: <b>{info['dims']}</b> | 📦 Size: <b>{info['size']}</b></small>
         </div>
     """, unsafe_allow_html=True)
+    
+    if not is_cached:
+        st.warning("⚠️ **Model not found in local cache.**")
+        if not online_mode:
+            st.info("Please switch to **Online Mode** to download this model (one-time download).")
+        else:
+            st.info("System will download the model on first initialization.")
 
 # Late import to ensure environment variables are set
 from sentence_transformers import SentenceTransformer
