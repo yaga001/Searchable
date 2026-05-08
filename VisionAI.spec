@@ -4,7 +4,7 @@ from PyInstaller.utils.hooks import copy_metadata
 
 datas = [('E:\\ANTIGRAVITY\\app.py', '.')]
 binaries = []
-hiddenimports = ['PIL.Image', 'chromadb', 'numpy', 'os', 'sentence_transformers.SentenceTransformer', 'streamlit', 'time', 'chromadb.api.rust']
+hiddenimports = ['PIL.Image', 'chromadb', 'cv2', 'huggingface_hub.snapshot_download', 'numpy', 'os', 'sentence_transformers.SentenceTransformer', 'shutil', 'streamlit', 'time', 'chromadb.api.rust']
 datas += copy_metadata('streamlit')
 tmp_ret = collect_all('streamlit')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
@@ -13,7 +13,7 @@ datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
 a = Analysis(
-    ['C:\\Users\\TADASH~1\\AppData\\Local\\Temp\\tmpqcqkys4d.py'],
+    ['C:\\Users\\TADASH~1\\AppData\\Local\\Temp\\tmp21erou29.py'],
     pathex=['.'],
     binaries=binaries,
     datas=datas,
